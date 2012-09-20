@@ -88,11 +88,16 @@ namespace PFSearch2.Interface
       {
         resultView.BeginUpdate();
         resultView.Items.Add(new ListViewItem() { Text = result.FullPath, Tag = result });
-        resultView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
-        int width = resultView.Width - SystemInformation.VerticalScrollBarWidth - resultView.Margin.Left
+        int width = resultView.Width - SystemInformation.VerticalScrollBarWidth - resultView.Margin.Left 
           - resultView.Margin.Right;
         if (fileColumn.Width < width)
+        {
           fileColumn.Width = width;
+        }
+        else
+        {
+          resultView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
         resultView.EndUpdate();
       });
     }
