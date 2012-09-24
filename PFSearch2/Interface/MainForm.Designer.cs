@@ -66,6 +66,7 @@
       // cancelButton
       // 
       this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cancelButton.Enabled = false;
       this.cancelButton.Location = new System.Drawing.Point(543, 90);
       this.cancelButton.Name = "cancelButton";
       this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -156,7 +157,7 @@
             this.openfileToolStripMenuItem,
             this.copyToolStripMenuItem});
       this.resultContextMenu.Name = "resultContextMenu";
-      this.resultContextMenu.Size = new System.Drawing.Size(169, 92);
+      this.resultContextMenu.Size = new System.Drawing.Size(169, 70);
       // 
       // openFilelocationToolStripMenuItem
       // 
@@ -243,6 +244,7 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "MainForm";
       this.Text = "Plain Flippin\' File Search";
+      this.ResizeEnd += new System.EventHandler(this.MainForm_Resize);
       this.resultsGroup.ResumeLayout(false);
       this.resultContextMenu.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.argumentsBindingSource)).EndInit();

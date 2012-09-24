@@ -88,18 +88,26 @@ namespace PFSearch2.Interface
       {
         resultView.BeginUpdate();
         resultView.Items.Add(new ListViewItem() { Text = result.FullPath, Tag = result });
-        int width = resultView.Width - SystemInformation.VerticalScrollBarWidth - resultView.Margin.Left 
-          - resultView.Margin.Right;
-        if (fileColumn.Width < width)
-        {
-          fileColumn.Width = width;
-        }
-        else
-        {
-          resultView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
+        AdjustResultView();
         resultView.EndUpdate();
       });
+    }
+
+    private void MainForm_Resize(object sender, EventArgs e)
+    {
+      resultView.BeginUpdate();
+      AdjustResultView();
+      resultView.EndUpdate();
+    }
+
+    private void AdjustResultView()
+    {
+      resultView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+
+      int width = resultView.Width - SystemInformation.VerticalScrollBarWidth - resultView.Margin.Left
+        - resultView.Margin.Right;
+      if (fileColumn.Width < width)
+        fileColumn.Width = width;
     }
 
     void SearchWorker_SearchProgressed(string message)
@@ -180,11 +188,11 @@ namespace PFSearch2.Interface
     private void ToggleContextMenuItems()
     {
       var selected = SelectedResults;
-      
+
       bool singleSelection = (selected.Count == 1);
       openFilelocationToolStripMenuItem.Available = singleSelection;
       openfileToolStripMenuItem.Available = singleSelection;
-      
+
       bool anySelection = (selected.Count > 0);
       resultContextMenu.Enabled = anySelection;
       copyToolStripMenuItem.Available = anySelection;
