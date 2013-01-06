@@ -19,6 +19,7 @@ namespace PFSearch2.Interface
     {
       Initialize();
       HookThingsUp();
+      ToggleContextMenuItems();
     }
 
     private void HookThingsUp()
@@ -78,6 +79,7 @@ namespace PFSearch2.Interface
         if (transition == SearchWorker.Transition.Started)
         {
           resultView.Items.Clear();
+          ToggleContextMenuItems();
         }
       });
     }
@@ -160,7 +162,7 @@ namespace PFSearch2.Interface
       ShellTools.Copy(SelectedResults.Select(result => result.FullPath));
     }
 
-    private void resultView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+    private void resultView_SelectedIndexChanged(object sender, EventArgs e)
     {
       ToggleContextMenuItems();
     }
@@ -183,7 +185,6 @@ namespace PFSearch2.Interface
         return SelectedResults.FirstOrDefault();
       }
     }
-
 
     private void ToggleContextMenuItems()
     {

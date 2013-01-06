@@ -33,23 +33,23 @@
       this.searchButton = new System.Windows.Forms.Button();
       this.cancelButton = new System.Windows.Forms.Button();
       this.directoryBox = new System.Windows.Forms.TextBox();
+      this.argumentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.filenameBox = new System.Windows.Forms.TextBox();
       this.contentBox = new System.Windows.Forms.TextBox();
       this.directoryLabel = new System.Windows.Forms.Label();
       this.filenameLabel = new System.Windows.Forms.Label();
       this.contentLabel = new System.Windows.Forms.Label();
       this.resultsGroup = new System.Windows.Forms.GroupBox();
+      this.resultView = new PFSearch2.Interface.ListViewEx();
+      this.fileColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.resultContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.openFilelocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.openfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.statusLabel = new System.Windows.Forms.Label();
-      this.resultView = new PFSearch2.Interface.ListViewEx();
-      this.fileColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.argumentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      ((System.ComponentModel.ISupportInitialize)(this.argumentsBindingSource)).BeginInit();
       this.resultsGroup.SuspendLayout();
       this.resultContextMenu.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.argumentsBindingSource)).BeginInit();
       this.SuspendLayout();
       // 
       // searchButton
@@ -86,6 +86,10 @@
       this.directoryBox.Name = "directoryBox";
       this.directoryBox.Size = new System.Drawing.Size(547, 20);
       this.directoryBox.TabIndex = 1;
+      // 
+      // argumentsBindingSource
+      // 
+      this.argumentsBindingSource.DataSource = typeof(PFSearch2.Model.SearchArguments);
       // 
       // filenameBox
       // 
@@ -150,6 +154,31 @@
       this.resultsGroup.TabStop = false;
       this.resultsGroup.Text = "Results";
       // 
+      // resultView
+      // 
+      this.resultView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.resultView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.fileColumn});
+      this.resultView.ContextMenuStrip = this.resultContextMenu;
+      this.resultView.FullRowSelect = true;
+      this.resultView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+      this.resultView.Location = new System.Drawing.Point(9, 19);
+      this.resultView.Name = "resultView";
+      this.resultView.Size = new System.Drawing.Size(588, 245);
+      this.resultView.TabIndex = 2;
+      this.resultView.UseCompatibleStateImageBehavior = false;
+      this.resultView.View = System.Windows.Forms.View.Details;
+      this.resultView.ItemActivate += new System.EventHandler(this.resultView_ItemActivate);
+      this.resultView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.resultView_ItemDrag);
+      this.resultView.SelectedIndexChanged += new System.EventHandler(this.resultView_SelectedIndexChanged);
+      // 
+      // fileColumn
+      // 
+      this.fileColumn.Text = "File";
+      this.fileColumn.Width = 600;
+      // 
       // resultContextMenu
       // 
       this.resultContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -196,35 +225,6 @@
       this.statusLabel.TabIndex = 6;
       this.statusLabel.Text = "Ready";
       // 
-      // resultView
-      // 
-      this.resultView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.resultView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.fileColumn});
-      this.resultView.ContextMenuStrip = this.resultContextMenu;
-      this.resultView.FullRowSelect = true;
-      this.resultView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-      this.resultView.Location = new System.Drawing.Point(9, 19);
-      this.resultView.Name = "resultView";
-      this.resultView.Size = new System.Drawing.Size(588, 245);
-      this.resultView.TabIndex = 2;
-      this.resultView.UseCompatibleStateImageBehavior = false;
-      this.resultView.View = System.Windows.Forms.View.Details;
-      this.resultView.ItemActivate += new System.EventHandler(this.resultView_ItemActivate);
-      this.resultView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.resultView_ItemDrag);
-      this.resultView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.resultView_ItemSelectionChanged);
-      // 
-      // fileColumn
-      // 
-      this.fileColumn.Text = "File";
-      this.fileColumn.Width = 600;
-      // 
-      // argumentsBindingSource
-      // 
-      this.argumentsBindingSource.DataSource = typeof(PFSearch2.Model.SearchArguments);
-      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,9 +245,9 @@
       this.Name = "MainForm";
       this.Text = "Plain Flippin\' File Search";
       this.ResizeEnd += new System.EventHandler(this.MainForm_Resize);
+      ((System.ComponentModel.ISupportInitialize)(this.argumentsBindingSource)).EndInit();
       this.resultsGroup.ResumeLayout(false);
       this.resultContextMenu.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.argumentsBindingSource)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
